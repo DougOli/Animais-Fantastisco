@@ -1,22 +1,35 @@
-export default function initAnimation() {
-  const sections = document.querySelectorAll('[data-anime="scroll"]');
-  const windowMetade = window.innerHeight * 0.6;
-  const ativo = "ativo";
+export default class ScrollSuave {
+  constructor(links, options) {
+    this.internalLink = document.querySelectorAll(links);
+    if (options === undefined) {
+      this.options = {
+        behavior: "smooth",
+        block: "start",
+      };
+    } else {
+      this.options = options;
+      this.scrollToSection = this.scrollToSection.bind(this);
+    }
+  }
 
-  function scrollAnimate() {
-    sections.forEach((section) => {
-      const sectionTop = section.getBoundingClientRect().top;
-      const isSectionVisible = sectionTop - windowMetade < 0;
-      if (isSectionVisible) {
-        section.classList.add(ativo);
-      } else if (section.classList.contains(ativo)) {
-        section.classList.remove(ativo);
-      }
+  scrollToSection(event) {
+    event.preventDefault();
+    const href = event.currentTarget.getAttribute("href");
+    const section = document.querySelector(href);
+
+    section.scrollIntoView(this.options);
+  }
+
+  addLinkEvent() {
+    this.internalLink.forEach((link) => {
+      link.addEventListener("click", this.scrollToSection);
     });
   }
 
-  if (sections.length) {
-    scrollAnimate();
-    window.addEventListener("scroll", scrollAnimate);
+  init() {
+    if (this.internalLink.length) {
+      this.addLinkEvent();
+    }
+    return this;
   }
 }
