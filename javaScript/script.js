@@ -3,7 +3,7 @@ import TabNav from "./modulos/tab-animate.js";
 import Accordion from "./modulos/activate-accordion.js";
 import initAnimation from "./modulos/menu-animate.js";
 import Modal from "./modulos/modal.js";
-import initTooltip from "./modulos/tooltip.js";
+import Tooltip from "./modulos/tooltip.js";
 import initDropdown from "./modulos/dropdown.js";
 import initMobileMenu from "./modulos/mobile-menu.js";
 import openingHours from "./modulos/opening-hours.js";
@@ -27,11 +27,13 @@ const modal = new Modal(
   '[data-modal="fechar"]',
   '[data-modal="container"]'
 );
-
 modal.init();
 
+const tooltip = new Tooltip("[data-tooltip]");
+
+tooltip.init();
+
 initAnimation();
-initTooltip();
 initDropdown();
 initMobileMenu();
 openingHours();
