@@ -37,5 +37,5 @@ initAnimation();
 initDropdown();
 initMobileMenu();
 openingHours();
-fetchAnimais();
+fetchAnimais("../../animaisapi.json", ".numeros-grid");
 fetchBitCoins();
