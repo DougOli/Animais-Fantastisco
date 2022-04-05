@@ -38,4 +38,4 @@ initDropdown();
 initMobileMenu();
 openingHours();
 fetchAnimais("../../animaisapi.json", ".numeros-grid");
-fetchBitCoins();
+fetchBitCoins("https://blockchain.info/ticker", ".btc-preco");
